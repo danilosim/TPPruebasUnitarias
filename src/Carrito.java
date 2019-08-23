@@ -3,22 +3,26 @@ import java.util.List;
 
 public class Carrito {
 	List<DetalleCarrito> detalleCarrito;
-	
-	public void CrearCarrito(List<DetalleCarrito> detalle)  {
-		if(detalle.size()!= 0) {
-			this.detalleCarrito = detalle;
+
+	public Carrito(List<DetalleCarrito> detalleCarrito) {
+		if(detalleCarrito.size()!= 0) {
+			this.detalleCarrito = detalleCarrito;
 		}
 		else {
 			throw new IllegalArgumentException();
 		}
 	}
-	
+
+	public Carrito() {
+		throw new IllegalStateException();
+	}
+
 	public void AgregarProductoCarrito(Producto prod, int cant) {
 		if(cant != 0 && cant > 0) {
 			boolean same = false;
 			for (DetalleCarrito detalle : this.detalleCarrito) {
 				if (detalle.getProducto().getId() == prod.getId()){
-					detalle.setCantidad(detalle.getCantidad + cant);
+					detalle.setCantidad(detalle.getCantidad() + cant);
 					same = true;
 					break;
 				}
@@ -42,12 +46,12 @@ public class Carrito {
 			for (DetalleCarrito detalle : this.detalleCarrito) {
 				if (detalle.getProducto().getId() == prod.getId()){
 					if (cant < detalle.getCantidad()){
-						detalle.setCantidad(detalle.getCantidad - cant)
+						detalle.setCantidad(detalle.getCantidad() - cant);
 					} else {
 						toRemove.add(detalle);
 						this.detalleCarrito.removeAll(toRemove);
 					}
-					detalle.setCantidad(detalle.getCantidad + cant);
+					detalle.setCantidad(detalle.getCantidad() + cant);
 					same = true;
 					break;
 				}

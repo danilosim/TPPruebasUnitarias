@@ -1,15 +1,16 @@
+import java.util.List;
 
 public class DetalleCarrito {
-	Producto producto;
-
+	private Producto producto;
+	private List<Producto> productos;
 	private int cantidad = 0;
 	
-	public DetalleCarrito(Producto prod, int cantidad) {
+	public DetalleCarrito(Producto producto, int cantidad) {
 		// metodo a testear
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
-}
+
 	public DetalleCarrito(List<Producto> prods) {
 
 		for (Producto producto : prods) {
@@ -33,5 +34,13 @@ public class DetalleCarrito {
 
 	public void setCantidad(int cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 }
