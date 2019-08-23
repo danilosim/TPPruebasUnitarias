@@ -14,35 +14,54 @@ public class Carrito {
 	}
 	
 	public void AgregarProductoCarrito(Producto prod, int cant) {
-		if(cant != 0 && cant > 0 ) {
-
+		if(cant != 0 && cant > 0) {
+			boolean same = false;
 			for (DetalleCarrito detalle : this.detalleCarrito) {
-				if (detalle.get(0).getId() == prod.getId()){
-					for (int i = 0; i < cant; i++) {
-						detalle.add(prod)
-					}
+				if (detalle.getProducto().getId() == prod.getId()){
+					detalle.setCantidad(detalle.getCantidad + cant);
+					same = true;
+					break;
 				}
 			}
+			if (!same){
+				this.detalleCarrito.add(new DetalleCarrito(prod, cant));
+			}
+
 		}
 		else {
 			throw new IllegalArgumentException();
 
 		}
-		if(cant != 0 && cant > 0 ) {
-			if(prod.stock > cant) {
-				DetalleCarrito detalle1 = new DetalleCarrito(prod);
-				List<DetalleCarrito> detalleCarrito1 = new ArrayList<>();
-				detalleCarrito1.add(detalle1);
-				this.detalleCarrito = detalleCarrito1;
-			}
-		}
-
-
 	}
 
 	
-	public void EliminarProductoCarrito(Producto prod) {
-		
+	public void EliminarProductoCarrito(Producto prod, int cant) {
+		List<Object> toRemove = new ArrayList<Object>();
+		if(cant > 0) {
+			boolean same = false;
+			for (DetalleCarrito detalle : this.detalleCarrito) {
+				if (detalle.getProducto().getId() == prod.getId()){
+					if (cant < detalle.getCantidad()){
+						detalle.setCantidad(detalle.getCantidad - cant)
+					} else {
+						toRemove.add(detalle);
+						this.detalleCarrito.removeAll(toRemove);
+					}
+					detalle.setCantidad(detalle.getCantidad + cant);
+					same = true;
+					break;
+				}
+			}
+
+			if (!same){
+				throw new IllegalArgumentException();
+			}
+
+		}
+		else {
+			throw new IllegalArgumentException();
+
+		}
 	}
 }
 

@@ -1,13 +1,13 @@
 
 public class DetalleCarrito {
-	List<Producto> productos;
+	Producto producto;
 
 	private int cantidad = 0;
 	
-	public DetalleCarrito(Producto prod) {
+	public DetalleCarrito(Producto prod, int cantidad) {
 		// metodo a testear
-		this.productos = new ArrayList<>();
-		this.productos.add(prod);
+		this.producto = producto;
+		this.cantidad = cantidad;
 	}
 }
 	public DetalleCarrito(List<Producto> prods) {
