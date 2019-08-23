@@ -6,10 +6,15 @@ public class Producto {
 	int stock;
 	
 	public Producto(int id, String nombre, String descripcion, int stock) {
-		this.id = id;
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.stock = stock;
+		if(nombre == null || descripcion == null || stock == 0 ) {
+			throw new IllegalArgumentException();
+		}else {
+			this.id = id;
+			this.nombre = nombre;
+			this.descripcion = descripcion;
+			this.stock = stock;
+		}
+		
 	}
 
 	public int getId() {
