@@ -14,7 +14,21 @@ public class Carrito {
 	}
 	
 	public void AgregarProductoCarrito(Producto prod, int cant) {
-		if(cant != 0 || cant > 0 ) {
+		if(cant != 0 && cant > 0 ) {
+
+			for (DetalleCarrito detalle : this.detalleCarrito) {
+				if (detalle.get(0).getId() == prod.getId()){
+					for (int i = 0; i < cant; i++) {
+						detalle.add(prod)
+					}
+				}
+			}
+		}
+		else {
+			throw new IllegalArgumentException();
+
+		}
+		if(cant != 0 && cant > 0 ) {
 			if(prod.stock > cant) {
 				DetalleCarrito detalle1 = new DetalleCarrito(prod);
 				List<DetalleCarrito> detalleCarrito1 = new ArrayList<>();
@@ -22,13 +36,10 @@ public class Carrito {
 				this.detalleCarrito = detalleCarrito1;
 			}
 		}
-		
-		else {
-			throw new IllegalArgumentException();
-			
-		}
-			
+
+
 	}
+
 	
 	public void EliminarProductoCarrito(Producto prod) {
 		
