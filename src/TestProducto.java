@@ -22,7 +22,7 @@ public class TestProducto {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testProductoSinNombreDescripcionStock(){
-		Producto productoSinNombreDescripcionStock = Producto(4,null,null,0);
+		Producto productoSinNombreDescripcionStock = new Producto(4,null,null,0);
 	}
 
 }

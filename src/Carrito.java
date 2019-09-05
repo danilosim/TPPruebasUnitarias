@@ -2,14 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Carrito {
-	List<DetalleCarrito> detalleCarrito;
+	private List<DetalleCarrito> detallesCarrito = new ArrayList<>();
+	private int idCarrito;
 
-	public Carrito(List<DetalleCarrito> detalleCarrito) {
-		if(detalleCarrito.size()!= 0) {
-			this.detalleCarrito = detalleCarrito;
-		}
-		else {
-			throw new IllegalArgumentException();
+	public Carrito(Producto producto, int cantidad) {
+		if (cantidad > 0) {
+			detallesCarrito.add(new DetalleCarrito(producto, cantidad));
 		}
 	}
 
@@ -18,9 +16,9 @@ public class Carrito {
 	}
 
 	public void agregarProductoCarrito(Producto prod, int cant) {
-		if(cant != 0 && cant > 0) {
+		if(cant > 0) {
 			boolean same = false;
-			for (DetalleCarrito detalle : this.detalleCarrito) {
+			for (DetalleCarrito detalle : this.detallesCarrito) {
 				if (detalle.getProducto().getId() == prod.getId()){
 					detalle.setCantidad(detalle.getCantidad() + cant);
 					same = true;
@@ -28,44 +26,49 @@ public class Carrito {
 				}
 			}
 			if (!same){
-				this.detalleCarrito.add(new DetalleCarrito(prod, cant));
+				this.detallesCarrito.add(new DetalleCarrito(prod, cant));
 			}
 
-		}
-		else {
+		} else {
 			throw new IllegalArgumentException();
 
 		}
 	}
 
 	
-	public void eliminarProductoCarrito(Producto prod, int cant) {
-		List<Object> toRemove = new ArrayList<Object>();
-		if(cant > 0) {
-			boolean same = false;
-			for (DetalleCarrito detalle : this.detalleCarrito) {
-				if (detalle.getProducto().getId() == prod.getId()){
-					if (cant < detalle.getCantidad()){
-						detalle.setCantidad(detalle.getCantidad() - cant);
-					} else {
-						toRemove.add(detalle);
-						this.detalleCarrito.removeAll(toRemove);
-					}
-					detalle.setCantidad(detalle.getCantidad() + cant);
-					same = true;
-					break;
-				}
+	public void eliminarProductoCarrito(Producto prod) {
+
+		DetalleCarrito toRemove = null;
+
+		boolean same = false;
+		for (DetalleCarrito detalle : this.detallesCarrito) {
+			if (detalle.getProducto().getId() == prod.getId()){
+				toRemove = detalle;
 			}
-
-			if (!same){
-				throw new IllegalArgumentException();
-			}
-
 		}
-		else {
-			throw new IllegalArgumentException();
 
+		if(toRemove != null){
+			this.detallesCarrito.remove(toRemove);
+		} else {
+			throw new IllegalStateException();
 		}
+
+	}
+
+	public List<DetalleCarrito> getDetallesCarrito() {
+		return detallesCarrito;
+	}
+
+	public void setDetallesCarrito(List<DetalleCarrito> detallesCarrito) {
+		this.detallesCarrito = detallesCarrito;
+	}
+
+	public int getIdCarrito() {
+		return idCarrito;
+	}
+
+	public void setIdCarrito(int idCarrito) {
+		this.idCarrito = idCarrito;
 	}
 }
 

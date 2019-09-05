@@ -2,30 +2,12 @@ import java.util.List;
 
 public class DetalleCarrito {
 	private Producto producto;
-	private List<Producto> productos;
-	private int cantidad = 0;
+	private int cantidad;
 	
 	public DetalleCarrito(Producto producto, int cantidad) {
 		// metodo a testear
 		this.producto = producto;
 		this.cantidad = cantidad;
-	}
-
-	public DetalleCarrito(List<Producto> prods) {
-
-		for (Producto producto : prods) {
-			//checkear que todos sean el mismo producto
-			// no implementado
-		}
-		this.productos = prods;
-	}
-
-	public List<Producto> getProductos() {
-		return productos;
-	}
-
-	public void setProductos(List<Producto> productos) {
-		this.productos = productos;
 	}
 
 	public int getCantidad() {
