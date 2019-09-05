@@ -17,7 +17,7 @@ public class Carrito {
 		throw new IllegalStateException();
 	}
 
-	public void AgregarProductoCarrito(Producto prod, int cant) {
+	public void agregarProductoCarrito(Producto prod, int cant) {
 		if(cant != 0 && cant > 0) {
 			boolean same = false;
 			for (DetalleCarrito detalle : this.detalleCarrito) {
@@ -39,7 +39,7 @@ public class Carrito {
 	}
 
 	
-	public void EliminarProductoCarrito(Producto prod, int cant) {
+	public void eliminarProductoCarrito(Producto prod, int cant) {
 		List<Object> toRemove = new ArrayList<Object>();
 		if(cant > 0) {
 			boolean same = false;
