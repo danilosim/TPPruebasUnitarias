@@ -6,8 +6,12 @@ public class Carrito {
 	private int idCarrito;
 
 	public Carrito(Producto producto, int cantidad) {
-		if (cantidad > 0) {
+		if (cantidad > 0 && cantidad < producto.getStock()) {
 			detallesCarrito.add(new DetalleCarrito(producto, cantidad));
+			producto.setStock(producto.getStock()-cantidad);
+		}
+		else {
+			throw new IllegalStateException();
 		}
 	}
 
@@ -48,6 +52,8 @@ public class Carrito {
 		}
 
 		if(toRemove != null){
+			Producto producto = toRemove.getProducto();
+			producto.setStock(producto.getStock() + toRemove.getCantidad());
 			this.detallesCarrito.remove(toRemove);
 		} else {
 			throw new IllegalStateException();

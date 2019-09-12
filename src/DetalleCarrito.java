@@ -5,7 +5,6 @@ public class DetalleCarrito {
 	private int cantidad;
 	
 	public DetalleCarrito(Producto producto, int cantidad) {
-		// metodo a testear
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
