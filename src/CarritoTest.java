@@ -8,19 +8,19 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarritoTest {
 
     @Test
-    void agregarProductoCarritoConCantidadCero() {
+    void agregarProductoCarritoConCantidadCero() { //PRUEBA 2
         Producto televisor = new Producto(1, "Televisor", "televisor LED", 4);
         assertThrows(IllegalStateException.class, () -> new Carrito(televisor, 0));
     }
 
     @Test
-    void agregarProductoCarritoConCantidadMayorAStock() {
+    void agregarProductoCarritoConCantidadMayorAStock() { //PRUEBA 3
     	Producto televisor = new Producto(1, "Televisor", "televisor LED", 1);
         assertThrows(IllegalStateException.class, () -> new Carrito(televisor, 2));
     }
 
     @Test    
-    void crearDetallePorProducto(){
+    void crearDetallePorProducto(){ //PRUEBA 14
         int cantidadDetallesEsperada = 2;
         Producto televisor = new Producto(1, "Televisor", "televisor LED", 4);
         Carrito carrito = new Carrito(televisor, 2);
@@ -30,7 +30,7 @@ class CarritoTest {
     }
 
     @Test
-    void agregarProductoExistenteEnCarrito(){
+    void agregarProductoExistenteEnCarrito(){ //PRUEBA 19
         int cantidadTelevisoresEsperada = 8;
         Producto televisor = new Producto(1, "Televisor", "televisor LED", 14);
         Carrito carrito = new Carrito(televisor, 3);
@@ -39,14 +39,14 @@ class CarritoTest {
     }
  
     @Test
-    void bajarStockAlAgregarProductoAlCarrito() {
+    void bajarStockAlAgregarProductoAlCarrito() { //PRUEBA 8
     	Producto televisor = new Producto(1, "Televisor", "televisor LED", 3);
     	Carrito carrito = new Carrito(televisor, 1);
     	assertEquals(2, televisor.getStock());
     }
     
     @Test
-    void eliminarProductoDelCarrito() {
+    void eliminarProductoDelCarrito() { //PRUEBA 6
     	Producto televisor = new Producto(1, "Televisor", "televisor LED", 3);
     	Carrito carrito = new Carrito(televisor, 1);
     	assertEquals(carrito.getDetallesCarrito().size(), 1);
@@ -55,7 +55,7 @@ class CarritoTest {
 	}
     
     @Test
-    void eliminarProductoDelCarritoRestituirStock() {
+    void eliminarProductoDelCarritoRestituirStock() { //PRUEBA 7
     	Producto televisor = new Producto(1, "Televisor", "televisor LED", 3);
     	Carrito carrito = new Carrito(televisor, 1);
     	carrito.eliminarProductoCarrito(televisor);
